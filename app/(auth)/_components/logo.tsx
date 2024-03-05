@@ -12,9 +12,9 @@ export const Logo = () => {
         <p className={cn(font.className, "text-4xl font-semibold")}>
             Stream
         </p>
-        <div className="bg-white rounded-full p-4">
+        <div className="rounded-full p-2">
             <Image 
-                src={"/vercel.svg"}
+                src={"/stream.svg"}
                 alt="Stream"
                 height={"80"}
                 width={"80"}
