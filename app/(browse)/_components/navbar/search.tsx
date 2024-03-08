@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-const Search = () => {
+export const Search = () => {
 
     const router = useRouter();
     const [value, setValue] = useState("");
@@ -57,5 +57,3 @@ const Search = () => {
         </form>
     );
 }
- 
-export default Search;

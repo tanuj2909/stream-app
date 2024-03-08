@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Clapperboard } from "lucide-react";
 
-const Actions = async () => {
+export const Actions = async () => {
 
     const user = await currentUser();
 
@@ -40,5 +40,3 @@ const Actions = async () => {
         </div>
      );
 }
- 
-export default Actions;

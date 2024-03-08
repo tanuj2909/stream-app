@@ -6,7 +6,7 @@ interface WrapperProps {
     children: React.ReactNode,
 }
 
-const Wrapper = ({ children }: WrapperProps) => {
+export const Wrapper = ({ children }: WrapperProps) => {
 
     const { collapsed } = useSidebar((state) => state)
 
@@ -21,5 +21,3 @@ const Wrapper = ({ children }: WrapperProps) => {
         </aside>
      );
 }
- 
-export default Wrapper;
