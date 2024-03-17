@@ -42,6 +42,7 @@ export const ConnectModal = () => {
 
     const onSubmit = () => {
         startTransition(() => {
+            console.log(ingressType)
             createIngress(parseInt(ingressType))
                 .then(() => {
                     toast.success("Ingress created!");
