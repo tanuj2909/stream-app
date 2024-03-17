@@ -53,7 +53,7 @@ export const UserAvatar = ({
                     className="object-cover"
                 />
                 <AvatarFallback>
-                    {username[0]},
+                    {username[0]}
                     {username[username.length - 1]}
                 </AvatarFallback>
             </Avatar>
