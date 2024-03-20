@@ -1,10 +1,11 @@
 "use client";
 
 import { Participant, Track } from "livekit-client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTracks } from "@livekit/components-react";
 import { FullscreenControl } from "./fullscreen-control";
 import { useEventListener } from "usehooks-ts";
+import { VolumeControl } from "./volume-control";
 
 interface LiveVideoProps {
     participant: Participant
@@ -17,14 +18,36 @@ export const LiveVideo = ({
     const wrapperRef = useRef<HTMLDivElement>(null);
 
     const [isFullscreen, setIsFullscreen] = useState(false);
+    const [volume, setVolume] = useState(0);
+
+    const onVolumeChange = (value: number) => {
+        setVolume(+value);
+        if(videoRef.current) {
+            videoRef.current.muted = value === 0;
+            videoRef.current.volume = +value * 0.01;
+        }
+    };
+
+    const toggleMute = () => {
+        const isMuted = volume === 0;
+
+        setVolume(isMuted ? 50 : 0);
+
+        if(videoRef.current) {
+            videoRef.current.muted = !isMuted;
+            videoRef.current.volume = isMuted ? 0.5 : 0;
+        }
+    }
+
+    useEffect(() => {
+        onVolumeChange(0);
+    }, [])
 
     const toogleFullscreen = () => {
         if(isFullscreen) {
             document.exitFullscreen();
-            setIsFullscreen(false);
         } else if(wrapperRef.current) {
             wrapperRef.current.requestFullscreen();
-            setIsFullscreen(true);
         }
     };
 
@@ -56,6 +79,11 @@ export const LiveVideo = ({
             />
             <div className="absolute top-0 h-full w-full opacity-0 hover:opacity-100 hover:transition-all">
                 <div className="absolute bottom-0 flex h-14 w-full items-center justify-between bg-gradient-to-r from-neutral-900 px-4">
+                    <VolumeControl 
+                        value={volume}
+                        onChange={onVolumeChange}
+                        onToggle={toggleMute}
+                    />
                     <FullscreenControl 
                         isFullscreen={isFullscreen}
                         onToggle={toogleFullscreen}
