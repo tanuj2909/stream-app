@@ -1,6 +1,6 @@
 "use client";
 
-import { useChatSidebar } from "@/store/use-chat-sidebar";
+import { ChatVariant, useChatSidebar } from "@/store/use-chat-sidebar";
 import { useChat, useConnectionState, useRemoteParticipant } from "@livekit/components-react";
 import { ConnectionState } from "livekit-client";
 import { useEffect, useMemo, useState } from "react";
@@ -28,7 +28,7 @@ export const Chat = ({
 }: ChatProps) => {
 
     const matches = useMediaQuery('(max-width: 1024px');
-    const { varient, onExpand } = useChatSidebar((state) => state);
+    const { variant, onExpand } = useChatSidebar((state) => state);
     const connectionState = useConnectionState();
     const participant = useRemoteParticipant(hostIdentity);
 
@@ -63,6 +63,14 @@ export const Chat = ({
     return (
         <div className="flex flex-col bg-background border-l border-b pt-0 h-[calc(100vh-80px)]">
             <ChatHeader />
+            {variant === ChatVariant.CHAT && (
+                <>
+                </>
+            )}
+            {variant === ChatVariant.COMMUNITY && (
+                <>
+                </>
+            )}
         </div>
     )
 }
