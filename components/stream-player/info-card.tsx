@@ -61,11 +61,12 @@ export const InfoCard = ({
                         </h3>
                         <h3 className="text-sm font-semibold">
                             {thumbnailUrl && (
-                                <div className="reltive aspect-video rounded-md overflow-hidden w-[200px] border border-white/10">
+                                <div className="relative aspect-video rounded-md overflow-hidden w-[200px] border border-white/10">
                                     <Image 
                                         fill
                                         src={thumbnailUrl}
                                         alt={name}
+                                        className="object-cover"
                                     />
                                 </div>
                             )}
