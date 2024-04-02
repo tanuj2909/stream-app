@@ -74,8 +74,13 @@ export const getSearch = async (term?: string) => {
                     }
                 ]
             },
-            include: {
+            select: {
                 user: true,
+                id: true,
+                name: true,
+                thumbnail: true,
+                isLive: true,
+                updatedAt: true,
             },
             orderBy: [
                 {

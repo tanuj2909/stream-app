@@ -6,7 +6,8 @@ export default authMiddleware({
     '/api/webhooks(.*)',
     '/',
     '/api/uploadthing',
-    `/:username`
+    `/:username`,
+    "/search"
   ],
   // Routes that can always be accessed, and have
   // no authentication information
